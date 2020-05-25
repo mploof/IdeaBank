@@ -4,6 +4,7 @@ html {
   width: 100%;
   overflow-x: hidden;
   margin: auto;
+  background: #4431AF;
 }
 
 body {
@@ -47,6 +48,7 @@ body {
   border-radius: 20px;
   width: 100%;
   max-width: 800px;
+  background: #ACBF41;
 }
 
 .TitleBlock {
@@ -119,7 +121,7 @@ h3 {
   /* width: 100%; */
   /* height: 25px; */
   font-family: fantasy;
-  background: #dbdbdb;
+  background: #B9BBA7;
   font-size: 1.2em;
   border-style: solid;
   border-width: 3px;
@@ -129,6 +131,11 @@ h3 {
   justify-content: center;
   align-items: center;
   z-index: 100;
+  transition: 0.3s;
+}
+
+.IdeaTitle:hover {
+  background: #dbdbdb;
 }
 
 .popup-container {
@@ -149,7 +156,7 @@ h3 {
     display: block;
     box-shadow: 5px 10px #888888;
     border-radius: 25px;
-    background-color: white;
+    background: #dbdbdb;
 }
 
 .popup-contents {
