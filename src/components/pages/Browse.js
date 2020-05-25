@@ -34,7 +34,7 @@ function Browse(props) {
   return (
     <div>
     <div className='popup-container'>
-        <animated.div style={animation} onClick={handleClick} className='popup-item'>
+        <animated.div style={animation} className='popup-item'>
           {activeIdea &&
              <div className='popup-contents'>
              <h3>{activeIdea.title}</h3>
@@ -48,8 +48,8 @@ function Browse(props) {
              </div>
              </div>
           }
-
         </animated.div>
+        {activeIdea && <div onClick={handleClick} className='TransparentOverlay'/>}
     </div>
     <Section1>
       <h1 className='noSelect'>Browse</h1>

@@ -156,6 +156,14 @@ h3 {
   padding: 30px;
 }
 
+.TransparentOverlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
 .Form {
   margin: 10px;
 }
