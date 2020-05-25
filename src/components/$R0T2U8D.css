@@ -78,9 +78,9 @@ button:focus {
   margin-top: 15px;
 }
 
-h1, h2 {
+/* h1, h2 {
   font-family: monospace;
-}
+} */
 
 .IdeaPreview {
   border-style: solid;
@@ -106,17 +106,6 @@ h1, h2 {
   /* background: red; */
   font-size: 1.2em;
   text-align: center;
-}
-
-.IdeaDetails {
-  margin: 10px;
-  padding: 10px;
-  height: 0px;
-  text-align: left;
-  display: flex;
-  /* padding: 10px; */
-  /* height: 200px; */
-  /* background: lightblue; */
 }
 
 .IDCol1 {

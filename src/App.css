@@ -1,77 +1,253 @@
 html {
-  /* background: #154566; */
-  background: #4431AF;
-  width: 100vw;
+  display: block;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
   margin: auto;
 }
 
 body {
-  max-width: 800px;
-  height: 100%;
-  /* background: red; */
-  margin: auto;
-  display: flex;
+  min-height: 100%;
+  min-width: 100%;
+  margin: 0;
+  display: block;
+  justify-content: center;
 }
 
 .App {
+  margin: auto;
   display: flex;
   flex-direction: column;
-  /* background: lightblue; */
+  min-width: 360px;
+  width: 100%;
+  max-width: 1200px;
+  min-height: 100%;
   flex-grow: 1;
-  min-width: 600px;
+  justify-content: space-between;
+}
+
+.noSelect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.Container, .TitleBlock {
   text-align: center;
-}
-
-.App > div {
-  justify-content: 'center';
-  display: 'flex';
-  flex-grow: 1;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.Headline {
+  padding: 15px;
+  margin: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
   border-style: solid;
   border-width: 5px;
   border-radius: 20px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.TitleBlock {
+  flex-grow: 1;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.TitleBlock > h1, h2{
+  margin: 0;
+}
+
+.Container > h1, h2{
+  margin: 0;
+}
+
+.Row {
+  border-style: solid;
+  border-width: 5px;
+  margin-top: 10px;
+}
+
+h1 {
+  font-family: monospace;
+  font-size: 3em;
+}
+
+h2 {
+  font-family: fantasy;
+  font-size: 2em;
+}
+
+h3 {
+  font-family: fantasy;
+  font-size: 1.5em;
+}
+
+.NavMenu {
+  flex-grow: 1;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.MenuItem {
+ text-align: center;
+ will-change: max-width;
+}
+
+.MenuText {
+  transition: 0.3s;
+}
+
+.MenuText:hover {
+  color: #ACBF41;
+}
+
+.IdeaTitle {
+  padding: 0 10px 0 10px;
+  margin: 10px;
+  /* width: 100%; */
+  /* height: 25px; */
+  font-family: fantasy;
+  background: #dbdbdb;
+  font-size: 1.2em;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 10px;
+  min-height: 55px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  padding: 15px;
-  margin: 20px;
-  background: #ACBF41;
+  align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.popup-container {
+    position: fixed;
+    display: flex;
+    left: 0;
+    right: 0;
+    top: 50%;
+    z-index: 9999;
+    text-align:center;
+    height:0px;
+    background: red;
+    align-items: center;
+    justify-content: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.popup-item {
+    display: inline-block;
+    min-width: 250px;
+    max-width: 750px;
+    min-height: 200px;
+    max-height: 75vh;
+    padding: 25px 50px;
+    box-shadow: 5px 10px #888888;
+    border-radius: 25px;
+    background-color: white;
+
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 10px;
+}
+
+.Form {
+  margin: 10px;
+}
+
+.FormItem {
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+  margin-bottom: 10px;
+  display: block;
+  box-sizing: border-box;
+}
+
+.FormLabel {
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.FormLabel > label {
+  font-family: fantasy;
+}
+
+.FormInput {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 35px;
+  border-radius: 5px;
+}
+
+.FormInputArea {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 100px;
+  border-radius: 5px;
+  resize: vertical;
+}
+
+.FormButton {
+  font-family: fantasy;
+  height: 45px;
+  width: 100px;
+  border-radius: 10px;
+  margin-top: 5px;
+  outline: none;
+}
+
+.IdeaDetails {
+  /* position: absolute;
+  height: 100vh;
+  width: 100vw;
+  margin: 10px;
+  padding: 10px;
+  height: 0px;
+  text-align: left;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 10px;
+  height: 200px;
+  background: lightblue; */
 }
 
-.App-link {
-  color: #61dafb;
+
+
+/* ************* debug settings ************* */
+
+/* html {
+  background: #4431AF;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body {
+  background: red;
 }
+
+.App {
+  background: lightblue;
+}
+
+.Section1 {
+  background: lightyellow;
+}
+
+.Row {
+  background: green;
+}
+
+h1 {
+  background: purple;
+}
+
+h2 {
+  background: lightyellow;
+} */

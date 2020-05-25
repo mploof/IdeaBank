@@ -1,17 +1,11 @@
 import React, { useEffect, useState, useContext} from 'react'
 import { db } from '../firebase/fbConfig'
 import { IdeaContex } from './IdeaContext'
-import './Idea.css'
 import { useSpring, animated, config} from 'react-spring'
 
-function IdeaPreview({idea}) {
+function IdeaPreview({idea, setActiveIdea}) {
 
   const [clicked, setClicked] = useState(false)
-
-  const flip = useSpring({
-    transform: clicked ? 'rotateX(180deg)' : 'rotateX(0deg)',
-    config: config.gentle
-  })
 
 
   const growMenu = useSpring({
@@ -27,27 +21,34 @@ function IdeaPreview({idea}) {
 
   useEffect(() => {
     console.log(clicked)
+    setActiveIdea(idea)
   }, [clicked])
 
   const tagList = idea.tags.map(tag => <li>{tag}</li>)
 
   return (
-    <animated.div style={{flexDirection: 'column'}} className='IdeaPreview' onClick={handleClick}>
-      <animated.div className='IdeaTitle'>{idea.title}</animated.div>
-      <animated.div className='IdeaDetails' style={{...growMenu}}>
-        <div style={{width: '50%'}}>
-          <h4>Description: </h4>
-          {idea.description}
-        </div>
-        <div style={{width: '10%'}}></div>
-        <div style={{width: '25%'}}>
-          <h4>Tags: </h4>
-          <ul>{tagList}</ul>
-        </div>
+    <>
+      <animated.div onClick={handleClick} className='IdeaTitle'>
+        {idea.title}
       </animated.div>
-    </animated.div>
+    </>
   )
 }
+
+// <animated.div style={{flexDirection: 'column'}} className='IdeaPreview' onClick={handleClick}>
+//   <animated.div className='IdeaTitle'>{idea.title}</animated.div>
+//   <animated.div className='IdeaDetails' style={{...growMenu}}>
+//     <div style={{width: '50%'}}>
+//       <h4>Description: </h4>
+//       {idea.description}
+//     </div>
+//     <div style={{width: '10%'}}></div>
+//     <div style={{width: '25%'}}>
+//       <h4>Tags: </h4>
+//       <ul>{tagList}</ul>
+//     </div>
+//   </animated.div>
+// </animated.div>
 
 //
 // <h3 className='form-row' style={{}}>{idea.title}</h3>
