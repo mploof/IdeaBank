@@ -24,6 +24,10 @@ function IdeaPreview({idea, setActiveIdea}) {
     setActiveIdea(idea)
   }, [clicked])
 
+  useEffect(() => {
+    setActiveIdea(null)
+  }, [])
+
   const tagList = idea.tags.map(tag => <li>{tag}</li>)
 
   return (

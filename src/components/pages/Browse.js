@@ -21,8 +21,8 @@ function Browse(props) {
   }))
 
   function handleClick() {
-    set({opacity: 1, maxHeight: '0vh', maxWidth: '0px', minHeight: '0px', minWidth: '0px'})
     setActiveIdea(null)
+    set({opacity: 1, maxHeight: '0vh', maxWidth: '0px', minHeight: '0px', minWidth: '0px'})
   }
 
   useEffect(() => {
