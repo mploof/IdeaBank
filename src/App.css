@@ -1,10 +1,15 @@
 html {
+  box-sizing: border-box;
   display: block;
   height: 100%;
   width: 100%;
   overflow-x: hidden;
   margin: auto;
   background: #4431AF;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
 }
 
 body {
