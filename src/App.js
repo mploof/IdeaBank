@@ -1,19 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import './firebase/fbConfig'
 import { IdeaContextProvider } from './components/IdeaContext'
-import { Section1, Section2, Row } from './components/Sections'
-import { BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom'
-import Home from './components/pages/Home'
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+// import Home from './components/pages/Home'
 import Submit from './components/pages/Submit'
 import Search from './components/pages/Search'
 import Browse from './components/pages/Browse'
 import About from './components/pages/About'
 import NavMenu from './components/NavMenu'
 
+import { storageRef } from './firebase/fbConfig'
+
 function App() {
-  const linkStyle = {color: 'inherit', textDecoration: 'none' };
 
   return (
     <Router>

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext} from 'react'
 import { IdeaContex } from '../IdeaContext'
 import IdeaPreview from '../IdeaPreview'
 import { Section1 } from '../Sections'
-import { useSpring, animated, config } from 'react-spring'
+import { useSpring, animated   } from 'react-spring'
 
 function Browse(props) {
 
@@ -12,7 +12,7 @@ function Browse(props) {
     <IdeaPreview key={idea.title} idea={idea} setActiveIdea={setActiveIdea} />
   )
 
-  const [animation, set, stop] = useSpring(() => ({
+  const [animation, set] = useSpring(() => ({
     opacity: 0,
     maxHeight: '0vh',
     maxWidth: '0px',

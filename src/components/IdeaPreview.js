@@ -1,26 +1,14 @@
-import React, { useEffect, useState, useContext} from 'react'
-import { db } from '../firebase/fbConfig'
-import { IdeaContex } from './IdeaContext'
-import { useSpring, animated, config} from 'react-spring'
+import React, { useEffect, useState } from 'react'
 
 function IdeaPreview({idea, setActiveIdea}) {
 
   const [clicked, setClicked] = useState(false)
-
-
-  const growMenu = useSpring({
-    minHeight: clicked ? '100px' : '0px',
-    height: clicked ? '200px' : '0px',
-    opacity: clicked ? 1 : 0,
-    config: config.gentle
-  })
 
   function handleClick() {
     setClicked(lastClick => !lastClick)
   }
 
   useEffect(() => {
-    console.log(clicked)
     setActiveIdea(idea)
   }, [clicked])
 
@@ -28,13 +16,11 @@ function IdeaPreview({idea, setActiveIdea}) {
     setActiveIdea(null)
   }, [])
 
-  const tagList = idea.tags.map(tag => <li>{tag}</li>)
-
   return (
     <>
-      <animated.div onClick={handleClick} className='IdeaTitle'>
+      <div onClick={handleClick} className='IdeaTitle'>
         {idea.title}
-      </animated.div>
+      </div>
     </>
   )
 }

@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react'
 import { IdeaContex } from '../IdeaContext'
-import { Section1 } from '../Sections'
 
 function Search(props) {
 
@@ -9,9 +8,6 @@ function Search(props) {
 
 
   return (
-
-
-
     <div className='Container'>
     <h1 className='noSelect'>Search</h1>
     <form className='Form'>

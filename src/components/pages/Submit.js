@@ -26,20 +26,6 @@ function Submit(props) {
     }
   )
 
-  const fadeDescription = useSpring({
-      opacity: type === 'normal' ? 1 : 0,
-      maxHeight: type === 'normal' ? '150px' : '0px',
-      config: config.slow
-    }
-  )
-
-  const fadeList = useSpring({
-      opacity: type === 'list' ? 1 : 0,
-      maxHeight: type === 'list' ? '150px' : '0px',
-      config: config.slow
-    }
-  )
-
   function handleSubmit(e) {
     e.preventDefault()
     if(title === '' || (type === 'normal' && description === '') || (type === 'list' && list === '') || tags === '') {

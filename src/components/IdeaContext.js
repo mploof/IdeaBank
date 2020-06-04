@@ -25,7 +25,7 @@ function IdeaContextProvider({children}) {
   }, [search])
 
   function updateFilteredIdeas() {
-    if(search != '') {
+    if(search !== '') {
       setFilteredIdeas(ideas.map(idea => idea.tags.includes(search)))
     } else {
       setFilteredIdeas(ideas)

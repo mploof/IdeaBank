@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Section1, Section2 } from './Sections'
 import { Link } from 'react-router-dom'
-import { useSpring, useTrail, animated, config } from 'react-spring'
+import { useTrail, animated } from 'react-spring'
 
 function NavMenu() {
 
@@ -16,7 +15,7 @@ function NavMenu() {
   ]
 
   const springConfig = {mass: 1, tension: 210, friction: 20, velocity: 0}
-  const [trail, set, stop] = useTrail(optionContents.length, () => ({
+  const [trail, set] = useTrail(optionContents.length, () => ({
     opacity: 1,
     height: '50px',
     maxWidth: '100px',
