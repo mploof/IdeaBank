@@ -4,6 +4,8 @@ import IdeaPreview from '../IdeaPreview'
 import { Section1 } from '../Sections'
 import { useSpring, animated, config   } from 'react-spring'
 import { storageRef } from '../../firebase/fbConfig'
+import SmoothImage from 'react-smooth-image';
+
 
 function Browse(props) {
 
@@ -92,9 +94,12 @@ function Browse(props) {
         <animated.div style={animation} className='popup-item'>
           {activeIdea &&
              <div className='popup-contents'>
-             <animated.div className='popup-img-container' style={{...fadeIn, height: imgHeight}}>
-               <img src={imgSrc} className='popup-img' />
-             </animated.div>
+               <SmoothImage
+                src={imgSrc}
+                transitionTime={0.3}
+                containerStyles={{display: 'block', height: imgHeight, paddingBottom: '0'}}
+                imageStyles={{position: '', top: '', left: '', maxHeight: '100%', width: '', borderRadius: '10px', margin: 'auto'}}
+               />
              <h3>{activeIdea.title}</h3>
              <div style={{textAlign: 'left', marginBottom: '15px'}}>
                <h4 style={{margin: 0, padding: 0}}>Description</h4>
