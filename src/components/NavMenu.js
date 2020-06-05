@@ -64,16 +64,5 @@ function NavMenu() {
   );
 }
 
-// <animated.div style={animate}>
-// {expanded &&
-//   <>
-//   <Link to='/submit' onClick={handleSelect} style={linkStyle}><Section2 title="Submit" /></Link>
-//   <Link to='/search' onClick={handleSelect}style={linkStyle}><Section2 title="Search" /></Link>
-//   <Link to='/browse' onClick={handleSelect}style={linkStyle}><Section2 title="Browse" /></Link>
-//   <Link to='/about' onClick={handleSelect} style={linkStyle}><Section2 title="About" /></Link>
-//   </>
-// }
-// </animated.div>
-
 
 export default NavMenu;

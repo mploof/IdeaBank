@@ -10,8 +10,6 @@ import Browse from './components/pages/Browse'
 import About from './components/pages/About'
 import NavMenu from './components/NavMenu'
 
-import { storageRef } from './firebase/fbConfig'
-
 function App() {
 
   return (
@@ -30,28 +28,5 @@ function App() {
     </Router>
   );
 }
-
-// function App() {
-//   return (
-//     <IdeaContextProvider>
-//       <div className="App">
-//         <div className='Headline'>
-//           <h1>The Idea Bank</h1>
-//         </div>
-//         <div>
-//           <SubmitIdea />
-//         </div>
-//         <div>
-//           <SearchBox />
-//         </div>
-//         <div>
-//           <IdeaList />
-//         </div>
-//
-//       </div>
-//     </IdeaContextProvider>
-//   );
-// }
-
 
 export default App;

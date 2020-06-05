@@ -1,8 +1,9 @@
 import React, { useState, useContext } from 'react'
 import { useSpring, animated, config } from 'react-spring'
-import { db } from '../../firebase/fbConfig'
+import { db, storageRef } from '../../firebase/fbConfig'
 import firebase from 'firebase/app'
 import { IdeaContex } from '../IdeaContext'
+import { preview_icon } from '../../assets'
 
 function Submit(props) {
 
@@ -15,6 +16,7 @@ function Submit(props) {
   const [alertActive, setAlertActive] = useState(false)
   const [list, setList] = useState([])
   const [alertText, setAlertText] = useState('')
+  const [preview, setPreview] = useState(preview_icon)
 
   const fillAlert = 'All fields must be filled!'
   const submitAlert = 'Idea submitted!'
@@ -41,6 +43,16 @@ function Submit(props) {
 
     db.collection("ideas").doc(docName).get().then(doc => createRecord(doc))
 
+    let imgRef = null
+    if(preview !== preview_icon) {
+      // Upload the image
+      const imgPath = 'images/' + docName + '.jpg'
+      imgRef = storageRef.child(imgPath)
+      imgRef.putString(preview, 'data_url').then(function(snapshot) {
+        console.log('Uploaded a data_url string!');
+      })
+    }
+
     function createRecord(doc) {
       if(!doc.exists) {
         db.collection("ideas").doc(docName).set({
@@ -48,7 +60,8 @@ function Submit(props) {
           type: type,
           description: description,
           tags: tagList,
-          created: firebase.firestore.Timestamp.now()
+          created: firebase.firestore.Timestamp.now(),
+          img: imgRef ? 'images/thumbnails/' + docName + '_300x300.jpg' : ''
         })
         .then(function() {
           console.log("Document successfully written!");
@@ -57,13 +70,16 @@ function Submit(props) {
         .catch(function(error) {
           console.error("Error writing document: ", error);
           alert("Error writing document!")
-        });
+        })
+
+        // Clear all the submission fields
         setTitle('')
         setType('normal')
         setList('')
         setDescription('')
         setTags('')
         setUpdate(true)
+        setPreview(preview_icon)
       } else {
         alert(existsAlert)
         console.log("Document already exists!")
@@ -76,6 +92,23 @@ function Submit(props) {
     console.log(text)
     setAlertActive(true)
     setTimeout(() => {setAlertActive(false)}, 1500)
+  }
+
+  const reader = new FileReader()
+
+  reader.onload = (() => {
+      console.log("loaded file")
+      setPreview(reader.result)
+    }
+  )
+
+  function handleFileChange(e) {
+    const file = e.target.files[0]
+
+    if (!file.type.startsWith('image/')){ return }
+
+    reader.readAsDataURL(file);
+
   }
 
   return (
@@ -118,6 +151,15 @@ function Submit(props) {
           value={tags}
         />
       </div>
+
+      <div className='FormItem'>
+        <div className='file-input'>
+          <input type='file' style={{display: 'none'}} name='file' id='file' onChange={handleFileChange} accept='.jpg, .jpeg, .png' />
+          <label htmlFor='file'>Select Image</label>
+        </div>
+      </div>
+
+      <img className='image-preview' src={preview}/>
 
       <animated.div className='Alert' style={fadeText}>
         <h3>{alertText}</h3>

@@ -2,7 +2,8 @@ import React, { useEffect, useState, useContext} from 'react'
 import { IdeaContex } from '../IdeaContext'
 import IdeaPreview from '../IdeaPreview'
 import { Section1 } from '../Sections'
-import { useSpring, animated   } from 'react-spring'
+import { useSpring, animated, config   } from 'react-spring'
+import { storageRef } from '../../firebase/fbConfig'
 
 function Browse(props) {
 
@@ -11,6 +12,7 @@ function Browse(props) {
   const ideaList = ideas.map(idea =>
     <IdeaPreview key={idea.title} idea={idea} setActiveIdea={setActiveIdea} />
   )
+  const [imgSrc, setImgSrc] = useState('')
 
   const [animation, set] = useSpring(() => ({
     opacity: 0,
@@ -20,16 +22,69 @@ function Browse(props) {
     minWidth: '0px'
   }))
 
+  const [fadeIn, setFadeIn] = useSpring(() => ({
+    opacity: 0,
+    config: config.molasses
+  }))
+
   function handleClick() {
     setActiveIdea(null)
     set({opacity: 1, maxHeight: '0vh', maxWidth: '0px', minHeight: '0px', minWidth: '0px'})
+    setFadeIn({opacity: 0})
+    setImgSrc('')
   }
 
   useEffect(() => {
     if(activeIdea) {
       set({opacity: 1, maxHeight: '80vh', maxWidth: '500px', minHeight: '350px', minWidth: '250px'})
+      getURL()
     }
   }, [activeIdea])
+
+  useEffect(() => {
+    if(imgSrc !== '') {
+      setTimeout(
+        setFadeIn({opacity: 1}), 5000
+      )
+    }
+  }, [imgSrc])
+
+  function getURL() {
+
+    // Make sure there's an image before trying to load it
+    if(typeof activeIdea === null || typeof activeIdea.img == 'undefined')
+      return
+
+    // Get the download URL
+    console.log(activeIdea.img)
+    storageRef.child(activeIdea.img).getDownloadURL().then(function(url) {
+      console.log(url)
+      setImgSrc(url)
+    }).catch(function(error) {
+
+      // A full list of error codes is available at
+      // https://firebase.google.com/docs/storage/web/handle-errors
+      switch (error.code) {
+        case 'storage/object-not-found':
+        // File doesn't exist
+        break;
+
+        case 'storage/unauthorized':
+        // User doesn't have permission to access the object
+        break;
+
+        case 'storage/canceled':
+        // User canceled the upload
+        break;
+
+        case 'storage/unknown':
+        // Unknown error occurred, inspect the server response
+        break;
+      }
+    })
+  }
+
+  const imgHeight = (activeIdea === null || typeof activeIdea.img == 'undefined') ? '0px' : '200px'
 
   return (
     <div>
@@ -37,6 +92,9 @@ function Browse(props) {
         <animated.div style={animation} className='popup-item'>
           {activeIdea &&
              <div className='popup-contents'>
+             <animated.div className='popup-img-container' style={{...fadeIn, height: imgHeight}}>
+               <img src={imgSrc} className='popup-img' />
+             </animated.div>
              <h3>{activeIdea.title}</h3>
              <div style={{textAlign: 'left', marginBottom: '15px'}}>
                <h4 style={{margin: 0, padding: 0}}>Description</h4>
