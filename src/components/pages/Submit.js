@@ -4,6 +4,8 @@ import { db, storageRef } from '../../firebase/fbConfig'
 import firebase from 'firebase/app'
 import { IdeaContex } from '../IdeaContext'
 import { preview_icon } from '../../assets'
+import Ripples from 'react-ripples'
+
 
 function Submit(props) {
 
@@ -153,10 +155,12 @@ function Submit(props) {
       </div>
 
       <div className='FormItem'>
+        <Ripples>
         <div className='file-input'>
           <input type='file' style={{display: 'none'}} name='file' id='file' onChange={handleFileChange} accept='.jpg, .jpeg, .png' />
           <label htmlFor='file'>Select Image</label>
         </div>
+        </Ripples>
       </div>
 
       <img className='image-preview' src={preview}/>
@@ -165,7 +169,7 @@ function Submit(props) {
         <h3>{alertText}</h3>
       </animated.div>
 
-      <button className='FormButton' onClick={handleSubmit}>Save</button>
+      <Ripples><button className='FormButton' onClick={handleSubmit}>Save</button></Ripples>
     </form>
     </div>
   )
